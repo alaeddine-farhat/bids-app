@@ -1,6 +1,8 @@
 # bids-app
 
 
+version: >= python 3.10
+
 Create virtualenv:
 
     python -m venv venv (windows)
