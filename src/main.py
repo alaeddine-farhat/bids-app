@@ -33,11 +33,13 @@ class Auction(BaseModel):
             for bid in bidder.bids:
                 # Check if bid is above current highest bid and reserve price
                 if bid > highest_bid and bid >= self.reserve_price:
-                    second_highest_bid = highest_bid
+                    # Check if highest bidder is not the current bidder
+                    if highest_bidder != bidder.name:
+                        second_highest_bid = highest_bid
                     highest_bid = bid
                     highest_bidder = bidder.name
                 # Check if bid is above current second-highest bid and reserve price
-                elif bid > second_highest_bid and bid >= self.reserve_price:
+                elif bid > second_highest_bid and bid >= self.reserve_price and highest_bidder != bidder.name:
                     second_highest_bid = bid
 
         # Check if there is a winner
