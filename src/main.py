@@ -1,6 +1,7 @@
 from typing import List, Optional, Tuple
 from pydantic import BaseModel, validator
 
+
 class Bidder(BaseModel):
     name: str
     bids: List[int] = []
@@ -9,6 +10,7 @@ class Bidder(BaseModel):
     def bids_must_be_nonnegative(cls, v):
         assert all(bid >= 0 for bid in v), 'bids must be nonnegative'
         return v
+
 
 class Auction(BaseModel):
     bidders: List[Bidder]
@@ -45,4 +47,3 @@ class Auction(BaseModel):
             # Compute winning price
             winning_price = second_highest_bid if second_highest_bid > self.reserve_price else self.reserve_price
             return highest_bidder, winning_price
-

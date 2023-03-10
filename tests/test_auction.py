@@ -17,6 +17,7 @@ def test_auction_with_winner():
     assert winner == 'E'
     assert winning_price == 135
 
+
 def test_auction_with_no_winner():
     bidders = [
         Bidder(name=2, bids=[90, 95]),
@@ -36,6 +37,7 @@ def test_reserve_price_must_be_nonnegative():
     with pytest.raises(ValidationError):
         Auction(bidders=[], reserve_price=-1)
 
+
 def test_bids_must_be_nonnegative():
     with pytest.raises(ValidationError):
         Bidder(name="A", bids=[-1])
@@ -50,6 +52,7 @@ def test_find_winner_and_price_with_winner():
     winner, price = auction.find_winner_and_price()
     assert winner == "B"
     assert price == 10
+
 
 def test_find_winner_and_price_with_tie():
     bidders = [
